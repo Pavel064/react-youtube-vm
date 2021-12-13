@@ -1,11 +1,21 @@
 import React from "react";
 import { Fragment } from "react/cjs/react.production.min";
 import { Form } from "../components/Form";
+import { Notes } from "../components/Notes";
 
 export const Home = () => {
-    return (
+    const notes = new Array(3)
+    .fill('')
+    .map((_, i) => ({id: i, title: `Note ${i + 1}`}))
+
+
+    return ( 
         <Fragment>
             <Form/>
+
+            <hr/>
+
+            <Notes notes={notes}/>
         </Fragment>
         
     )
