@@ -1,4 +1,4 @@
-import { ADD_NOTE, FETCH_NOTES, SHOW_LOADER } from "../types"
+import { ADD_NOTE, FETCH_NOTES, REMOVE_NOTE, SHOW_LOADER } from "../types"
 
 const handlers = {
 
@@ -33,8 +33,18 @@ const handlers = {
     }),
 
     /*
-
+    этот экшн принимает в себя стейт и пейлоад, где будет храниться айдишник 
+    удаленной ноте; на выходе возвращаем новый стейт;
+    далее нам надо изменить массив нотс, путём удаления нужного элемента,
+    т.е. обращаемся к стейт.нотс, вызываем метод филтер, где на каждой
+    итерации  будем получать ноте, и будем проверять, что если ноте.id 
+    не равняется пейлоад, тогда мы его удаляем
     */
+
+    [REMOVE_NOTE] : (state, {payload}) => ({
+        ...state,
+        notes: state.notes.filter(note => note.id !== payload)
+    }),
 
     DEFAULT: state => state
 }
